@@ -11,6 +11,7 @@
  */
 namespace Opl\Dependency\Builder;
 use Opl\Cache\Interfaces\ReadableStrategyInterface;
+use Opl\Dependency\BuilderInterface;
 
 /**
  * This builder allows to read the service definitions from a caching system.

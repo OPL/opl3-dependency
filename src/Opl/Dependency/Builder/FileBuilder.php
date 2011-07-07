@@ -10,6 +10,7 @@
  * and other contributors. See website for details.
  */
 namespace Opl\Dependency\Builder;
+use Opl\Dependency\BuilderInterface;
 use InvalidArgumentException;
 
 /**
