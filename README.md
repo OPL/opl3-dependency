@@ -13,8 +13,8 @@ Requirements
 
 + PHP 5.3+
 + [Open Power Collector](http://www.github.com/OPL/opl3-collector)
-+ [Symfony 2 Event Dispatcher](http://www.symfony.com)
-+ [Symfony 2 YAML Component](http://www.symfony-reloaded.org) (Optional)
++ [Open Power Cache](http://www.github.com/OPL/opl3-cache) (Optional)
++ [Symfony 2 YAML Component](http://www.symfony.com) (Optional)
 
 Contents
 --------
