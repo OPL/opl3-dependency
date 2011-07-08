@@ -16,7 +16,8 @@ class AllTests extends \PHPUnit_Framework_TestSuite
 		$suite->addTestSuite('TestSuite\\Builder\\CacheBuilderTest');
 		$suite->addTestSuite('TestSuite\\Builder\\FileBuilderTest');
 		$suite->addTestSuite('TestSuite\\Builder\\XmlFileBuilderTest');
-
+		$suite->addTestSuite('TestSuite\\Builder\\YamlFileBuilderTest');
+		
 		return $suite;
 	} // end suite();
 } // end AllTests;

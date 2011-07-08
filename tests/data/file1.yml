@@ -1,0 +1,8 @@
+foo:
+  className: 'Opl\Foo\Bar'
+  constructor:
+    - 'service:bar'
+    - 15
+  initializers:
+    setJoe:
+      - 'service:joe'
