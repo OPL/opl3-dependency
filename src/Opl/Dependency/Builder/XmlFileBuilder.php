@@ -10,6 +10,8 @@
  * and other contributors. See website for details.
  */
 namespace Opl\Dependency\Builder;
+use Opl\Dependency\Exception\BuilderException;
+use BadMethodCallException;
 
 class XmlFileBuilder extends FileBuilder
 {
@@ -23,7 +25,12 @@ class XmlFileBuilder extends FileBuilder
 			throw new BadMethodCallException('Cannot load an XML file: no file specified');
 		}
 		
+		libxml_use_internal_errors(true);
 		$document = \simplexml_load_file($this->findFile($this->currentFile));
+		foreach (libxml_get_errors() as $error)
+		{
+			throw new BuilderException('An error occured while parsing \''.$this->currentFile.'\': '.$error);
+		}
 		
 		$data = array();
 		foreach($document->service as $service)
