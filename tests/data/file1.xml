@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<services>
+	<service name="foo" class-name="Opl\Foo\Bar">
+		<constructor>
+			<argument>service:bar</argument>
+			<argument>15</argument>
+		</constructor>
+		
+		<initializer name="setJoe">
+			<argument>service:joe</argument>
+		</initializer>
+	</service>
+</services>
