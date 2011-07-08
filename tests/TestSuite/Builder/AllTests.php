@@ -13,6 +13,7 @@ class AllTests extends \PHPUnit_Framework_TestSuite
 	public static function suite()
 	{
 		$suite = new AllTests('TestSuite\\Builder');
+		$suite->addTestSuite('TestSuite\\Builder\\FileBuilderTest');
 		$suite->addTestSuite('TestSuite\\Builder\\XmlFileBuilderTest');
 
 		return $suite;
