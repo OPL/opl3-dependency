@@ -29,17 +29,20 @@ class XmlFileBuilder extends FileBuilder
 		$document = \simplexml_load_file($this->findFile($this->currentFile));
 		foreach (libxml_get_errors() as $error)
 		{
-			throw new BuilderException('An error occured while parsing \''.$this->currentFile.'\': '.$error);
+			if($error->level != LIBXML_ERR_WARNING)
+			{
+				throw new BuilderException('An error occured while parsing \''.$this->currentFile.'\': '.$error->message.' on line '.($error->line - 1));
+			}
 		}
 		
 		$data = array();
 		foreach($document->service as $service)
 		{
-			$stub = array('className' => $service['class-name'], 'constructor' => array(), 'initializers' => array());
+			$stub = array('className' => (string)$service['class-name'], 'constructor' => array(), 'initializers' => array());
 			
 			if(isset($service->constructor))
 			{
-				foreach($service->constructor as $argument)
+				foreach($service->constructor->argument as $argument)
 				{
 					$stub['constructor'][] = (string)$argument;
 				}
@@ -48,18 +51,18 @@ class XmlFileBuilder extends FileBuilder
 			{
 				foreach($service->initializer as $initializer)
 				{
-					$initializer = array();
+					$arguments = array();
 					if(isset($initializer->argument))
 					{
 						foreach($initializer->argument as $argument)
 						{
-							$initializer[] = (string)$argument;
+							$arguments[] = (string)$argument;
 						}
 					}
-					$stub['initializers'][$initializer['name']] = $initializer;
+					$stub['initializers'][(string)$initializer['name']] = $arguments;
 				}
 			}
-			$data[$service['name']] = $stub;
+			$data[(string)$service['name']] = $stub;
 		}
 		return $data;
 	} // end getDefinitions();
