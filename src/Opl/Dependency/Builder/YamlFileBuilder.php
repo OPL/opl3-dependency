@@ -10,6 +10,8 @@
  * and other contributors. See website for details.
  */
 namespace Opl\Dependency\Builder;
+use Symfony\Component\Yaml\Yaml;
+use BadMethodCallException;
 
 /**
  * Loads the service definitions from a YAML file.
